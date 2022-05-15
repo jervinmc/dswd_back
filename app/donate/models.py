@@ -18,6 +18,10 @@ class Donate(models.Model):
     lastname=models.CharField(_('package'),max_length=255,blank=True,null=True)
     middlename=models.CharField(_('descriptions'),max_length=255,blank=True,null=True)
     status=models.CharField(_('status'),max_length=255,blank=True,null=True)
+    category=models.CharField(_('category'),max_length=255,blank=True,null=True)
+    remarks=models.CharField(_('remarks'),max_length=255,blank=True,null=True)
+    user_id=models.CharField(_('user_id'),max_length=255,blank=True,null=True)
+    date_start=models.DateField(_('date_start'),blank=True,null=True)
     image = models.ImageField(
         _('image'), upload_to=nameFile, default="uploads/Donate.png")
 

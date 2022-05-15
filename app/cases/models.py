@@ -26,6 +26,7 @@ class Cases(models.Model):
         _('image'), upload_to=nameFile, default="uploads/Cases.png")
     
     birthplace=models.CharField(_('birthplace'),max_length=255,blank=True,null=True)
+    date_start=models.DateField(_('date_start'),blank=True,null=True)
     age=models.CharField(_('age'),max_length=255,blank=True,null=True)
     sex=models.CharField(_('sex'),max_length=255,blank=True,null=True)
     religion=models.CharField(_('religion'),max_length=255,blank=True,null=True)

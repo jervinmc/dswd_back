@@ -3,6 +3,10 @@ from rest_framework import viewsets,generics
 from .models import SAP
 from .serializers import SAPSerializer
 from rest_framework import permissions
+from beneficiaries.models import Beneficiaries
+from beneficiaries.serializers import BeneficiariesSerializer
+from ps.models import PS
+from ps.serializers import PSSerializer
 from rest_framework import filters
 from rest_framework.response import Response
 class SAPView(viewsets.ModelViewSet):
@@ -33,6 +37,38 @@ class SAPID(generics.GenericAPIView):
 class SAPBarangay(generics.GenericAPIView):
     def post(self,request):
         items = SAP.objects.filter(barangay=request.data.get('barangay'))
+        print(request.data.get('barangay'))
         serializer = SAPSerializer(items,many=True)
+        print(serializer.data)
         # serializer.is_valid(raise_exception=True)
         return Response(data=serializer.data)
+
+
+class Requests(generics.GenericAPIView):
+    def get(self,request):
+        items_beneficiaries = Beneficiaries.objects.filter(status='Pending')
+        items_4ps = Beneficiaries.objects.filter(status='Pending')
+        items_sap = PS.objects.filter(status='Pending')
+        sap_serializer = SAPSerializer(items_sap,many=True)
+        beneficiaries_serializer = SAPSerializer(items_beneficiaries,many=True)
+        ps_serializer = SAPSerializer(items_4ps,many=True)
+        listitem = []
+        for x in sap_serializer.data:
+            listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"sap","date_start":x['date_start']})
+        for x in beneficiaries_serializer.data:
+            listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"beneficiaries","date_start":x['date_start']})
+        for x in ps_serializer.data:
+            listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"4ps","date_start":x['date_start']})
+
+        # serializer.is_valid(raise_exception=True)
+        return Response(data=listitem)
+
+
+class CheckSAP(generics.GenericAPIView):
+    def get(self,request,user_id=None):
+        print("test")
+        items = SAP.objects.filter(status='Approved',user_id=user_id).count()
+        if(items>0):
+            return Response(data=False)
+        else:
+            return Response(data=True)

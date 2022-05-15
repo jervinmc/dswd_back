@@ -13,19 +13,17 @@ def nameFile(instance, filename):
     return 'uploads/{filename}'.format(filename=filename)
 
 
-class Beneficiaries(models.Model):
-    location=models.CharField(_('location'),max_length=255,blank=True,null=True)
-    firstname=models.CharField(_('firstname'),max_length=255,blank=True,null=True)
-    lastname=models.CharField(_('lastname'),max_length=255,blank=True,null=True)
-    middlename=models.CharField(_('middlename'),max_length=255,blank=True,null=True)
-    occupation=models.CharField(_('occupation'),max_length=255,blank=True,null=True)
+class PS(models.Model):
+    firstname=models.CharField(_('PS'),max_length=255,blank=True,null=True)
+    lastname=models.CharField(_('package'),max_length=255,blank=True,null=True)
+    middlename=models.CharField(_('descriptions'),max_length=255,blank=True,null=True)
     status=models.CharField(_('status'),max_length=255,blank=True,null=True)
-    beneficiaries_type=models.CharField(_('beneficiaries_type'),max_length=255,blank=True,null=True)
+    remarks=models.CharField(_('remarks'),max_length=255,blank=True,null=True)
     date_start=models.DateField(_('date_start'),blank=True,null=True)
     user_id=models.CharField(_('user_id'),max_length=255,blank=True,null=True)
     mop=models.CharField(_('mop'),max_length=255,blank=True,null=True)
     image = models.ImageField(
-        _('image'), upload_to=nameFile, default="uploads/Beneficiaries.png")
+        _('image'), upload_to=nameFile, default="uploads/PS.png")
 
     class Meta:
         ordering = ["-id"]
