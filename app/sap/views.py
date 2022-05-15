@@ -15,14 +15,14 @@ class SAPView(viewsets.ModelViewSet):
     search_fields = ['category','price','name','descriptions']
     queryset=SAP.objects.all()
     serializer_class=SAPSerializer
-    def create(self,request):
-        data = request.data
-        # print(self.request.user.id)
-        # data.user_id=self.request.user.id
-        serializer = SAPSerializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response()
+    # def create(self,request):
+    #     data = request.data
+    #     # print(self.request.user.id)
+    #     # data.user_id=self.request.user.id
+    #     serializer = SAPSerializer(data=data)
+    #     serializer.is_valid(raise_exception=True)
+    #     serializer.save()
+    #     return Response()
 
 
 class SAPID(generics.GenericAPIView):
@@ -69,6 +69,6 @@ class CheckSAP(generics.GenericAPIView):
         print("test")
         items = SAP.objects.filter(status='Approved',user_id=user_id).count()
         if(items>0):
-            return Response(data=False)
-        else:
             return Response(data=True)
+        else:
+            return Response(data=False)

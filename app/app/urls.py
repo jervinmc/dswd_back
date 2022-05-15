@@ -30,7 +30,7 @@ urlpatterns = [
     path('api/v1/ps/', include('ps.urls')),
     path('api/v1/users/details/', GetUserView.as_view(), name='get_user'),
     path('api/v1/bene/id/', BeneficiariesID.as_view(), name='get_user'),
-    path('api/v1/sap/id/', SAPID.as_view(), name='get_user'),
+    path('api/v1/sap_id/id/', SAPID.as_view(), name='get_user'),
     path('api/v1/barangaysap/', SAPBarangay.as_view(), name='get_user'),
     path('api/v1/donate_id/id/', DonateID.as_view(), name='get_user'),
     path('api/v1/ps_id/id/', PSID.as_view(), name='get_user'),
