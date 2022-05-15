@@ -47,14 +47,14 @@ class SAPBarangay(generics.GenericAPIView):
 class Requests(generics.GenericAPIView):
     def get(self,request):
         items_beneficiaries = Beneficiaries.objects.filter(status='Pending')
-        items_4ps = Beneficiaries.objects.filter(status='Pending')
-        items_sap = PS.objects.filter(status='Pending')
+        items_4ps = PS.objects.filter(status='Pending')
+        items_sap = SAP.objects.filter(status='Pending')
         sap_serializer = SAPSerializer(items_sap,many=True)
         beneficiaries_serializer = SAPSerializer(items_beneficiaries,many=True)
         ps_serializer = SAPSerializer(items_4ps,many=True)
         listitem = []
         for x in sap_serializer.data:
-            listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"sap","date_start":x['date_start']})
+            listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"sap","date_start":x['date_start'],"gender":x['gender'],"address":x['address'],"occupation":x['occupation'],"monthly_salary":x['monthly_salary'],"type_of_id":x['type_of_id'],"id_number":x['id_number'],"cellphone":x['cellphone'],"workplace":x['workplace'],"sector":x['sector'],"barangay":x['barangay'],"status":x['status'],"health_condition":x['health_condition'],"family_member":x['family_member'],"user_id":x['user_id'],"date_start":x['date_start'],"mop":x['mop']})
         for x in beneficiaries_serializer.data:
             listitem.append({"firstname":x['firstname'],"lastname":x['lastname'],"id":x['id'],"request_type":"beneficiaries","date_start":x['date_start']})
         for x in ps_serializer.data:
@@ -67,7 +67,9 @@ class Requests(generics.GenericAPIView):
 class CheckSAP(generics.GenericAPIView):
     def get(self,request,user_id=None):
         print("test")
+        print(user_id)
         items = SAP.objects.filter(status='Approved',user_id=user_id).count()
+        print(items)
         if(items>0):
             return Response(data=True)
         else:

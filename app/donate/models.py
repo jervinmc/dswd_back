@@ -14,9 +14,9 @@ def nameFile(instance, filename):
 
 
 class Donate(models.Model):
-    firstname=models.CharField(_('donate'),max_length=255,blank=True,null=True)
-    lastname=models.CharField(_('package'),max_length=255,blank=True,null=True)
-    middlename=models.CharField(_('descriptions'),max_length=255,blank=True,null=True)
+    firstname=models.CharField(_('firstname'),max_length=255,blank=True,null=True)
+    lastname=models.CharField(_('lastname'),max_length=255,blank=True,null=True)
+    middlename=models.CharField(_('middlename'),max_length=255,blank=True,null=True)
     status=models.CharField(_('status'),max_length=255,blank=True,null=True)
     category=models.CharField(_('category'),max_length=255,blank=True,null=True)
     remarks=models.CharField(_('remarks'),max_length=255,blank=True,null=True)
