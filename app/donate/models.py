@@ -24,6 +24,10 @@ class Donate(models.Model):
     date_start=models.DateField(_('date_start'),blank=True,null=True)
     image = models.ImageField(
         _('image'), upload_to=nameFile, default="uploads/Donate.png")
+    image1 = models.ImageField(
+        _('image1'), upload_to=nameFile, default="uploads/Donate.png")
+    image2 = models.ImageField(
+        _('image2'), upload_to=nameFile, default="uploads/Donate.png")
 
     class Meta:
         ordering = ["-id"]

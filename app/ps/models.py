@@ -24,6 +24,10 @@ class PS(models.Model):
     mop=models.CharField(_('mop'),max_length=255,blank=True,null=True)
     image = models.ImageField(
         _('image'), upload_to=nameFile, default="uploads/PS.png")
+    image1 = models.ImageField(
+        _('image1'), upload_to=nameFile, default="uploads/PS.png")
+    image2 = models.ImageField(
+        _('image2'), upload_to=nameFile, default="uploads/PS.png")
 
     class Meta:
         ordering = ["-id"]

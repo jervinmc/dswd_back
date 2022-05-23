@@ -56,8 +56,10 @@ INSTALLED_APPS = [
     'beneficiaries',
     'barangay',
     'donate',
-     'ps',
-
+    'ps',
+    'intervention',
+    'casecategory',
+    'referral',
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True

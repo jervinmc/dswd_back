@@ -35,3 +35,7 @@ class SAP(models.Model):
     # =models.CharField(_('lastname'),max_length=255,blank=True,null=True)
     image = models.ImageField(
         _('image'), upload_to=nameFile, default="uploads/SAP.png")
+    image1 = models.ImageField(
+        _('image1'), upload_to=nameFile, default="uploads/SAP.png")
+    image2 = models.ImageField(
+        _('image2'), upload_to=nameFile, default="uploads/SAP.png")

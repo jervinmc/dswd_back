@@ -10,6 +10,7 @@ from sap.views import SAPID,SAPBarangay,Requests,CheckSAP
 from donate.views import DonateID
 from ps.views import PSID,CheckPS
 from rest_framework import permissions
+from casecategory.views import CaseCategoryBulk,CaseCategoryCaseID
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -26,10 +27,15 @@ urlpatterns = [
     path('api/v1/donate/', include('donate.urls')),
     path('api/v1/sap/', include('sap.urls')),
     path('api/v1/barangay/', include('barangay.urls')),
+    path('api/v1/intervention/', include('intervention.urls')),
+    path('api/v1/referral/', include('referral.urls')),
+    path('api/v1/casecategory/', include('casecategory.urls')),
     path('api/v1/location/', include('location.urls')),
     path('api/v1/ps/', include('ps.urls')),
     path('api/v1/users/details/', GetUserView.as_view(), name='get_user'),
     path('api/v1/bene/id/', BeneficiariesID.as_view(), name='get_user'),
+    path('api/v1/casecategory-bulk/', CaseCategoryBulk.as_view(), name='get_user'),
+    path('api/v1/casecategory-userid/<int:case_id>/', CaseCategoryCaseID.as_view(), name='get_user'),
     path('api/v1/sap_id/id/', SAPID.as_view(), name='get_user'),
     path('api/v1/barangaysap/', SAPBarangay.as_view(), name='get_user'),
     path('api/v1/donate_id/id/', DonateID.as_view(), name='get_user'),
